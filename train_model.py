@@ -6,7 +6,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error
 import matplotlib.pyplot as plt
 import pickle
 
-df = pd.read_csv("../outputFiles/cleaned_air_quality.csv")
+df = pd.read_csv("outputFiles/cleaned_air_quality.csv")
 x = df[["temperature", "humidity"]]
 y = df["pm25"]
 
@@ -35,5 +35,5 @@ plt.xlabel("Actual PM2.5")
 plt.ylabel("Predicted PM2.5")
 plt.show()
 
-with open("../outputFiles/pm25_predictor.pkl", "wb") as f:
+with open("outputFiles/pm25_predictor.pkl", "wb") as f:
     pickle.dump(model, f)

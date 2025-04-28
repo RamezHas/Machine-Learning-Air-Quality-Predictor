@@ -7,7 +7,7 @@ from datetime import datetime
 # ---- Configuration ----
 API_KEY = "78e60a36daade4dff66f6f2b750dae5a3c830888"  # Replace with your API key
 CITY = "london"
-DATA_FILE = "../outputFiles/air_quality.csv"
+DATA_FILE = "outputFiles/air_quality.csv"
 
 
 # ---- Fetch Real-Time Data (WAQI API) ----

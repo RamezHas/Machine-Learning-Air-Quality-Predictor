@@ -6,7 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 # ---- Load Data ----
 def clean_data():
     try:
-        df = pd.read_csv("../outputFiles/test_air_quality.csv")
+        df = pd.read_csv("outputFiles/test_air_quality.csv")
     except FileNotFoundError:
         raise FileNotFoundError("CSV file not found. Run data_collection.py first.")
 
