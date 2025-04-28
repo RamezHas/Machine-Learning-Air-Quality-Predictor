@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 
 # ---- Configuration ----
-API_KEY = "78e60a36daade4dff66f6f2b750dae5a3c830888"  # Replace with your API key
+API_KEY = "your_own_apikey"  # Replace with your API key
 CITY = "london"
 DATA_FILE = "outputFiles/air_quality.csv"
 
