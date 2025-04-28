@@ -18,8 +18,8 @@ print(response)
 if response["status"] == "ok":
     pm25 = response["data"]["iaqi"].get("pm25", {}).get("v", np.nan)
     timestamp = response["data"]["time"]["s"]
-    temp = response["data"]["iaqi"]["t"]["v"]
-    humidity = response["data"]["iaqi"]["h"]["v"]
+    temp = response["data"]["iaqi"].get("t", {}).get("v", np.nan)
+    humidity = response["data"]["iaqi"].get("h", {}).get("v", np.nan)
 else:
     print("Error fetching data:", response.get("data", "Unknown error"))
 
