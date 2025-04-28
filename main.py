@@ -1,34 +1,26 @@
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
-import pickle
-import os
-import requests
+import numpy as np
+from datetime import datetime, timedelta
 
-api_key = "78e60a36daade4dff66f6f2b750dae5a3c830888"
-city = "Hagen"
+# Generate synthetic data for 7 days (hourly)
+np.random.seed(42)
+timestamps = [datetime(2024, 1, 1) + timedelta(hours=i) for i in range(168)]  # 7 days * 24 hours
+temperature = np.random.uniform(15, 30, 168)  # Random temps between 15°C and 30°C
+humidity = np.random.uniform(30, 80, 168)     # Random humidity between 30% and 80%
+pm25 = np.random.normal(35, 10, 168)          # PM2.5 around 35 µg/m³ (±10)
 
-url = f"https://api.waqi.info/feed/{city}/?token={api_key}"
-response = requests.get(url).json()
-print(response)
-if response["status"] == "ok":
-    pm25 = response["data"]["iaqi"].get("pm25", {}).get("v", np.nan)
-    timestamp = response["data"]["time"]["s"]
-    temp = response["data"]["iaqi"].get("t", {}).get("v", np.nan)
-    humidity = response["data"]["iaqi"].get("h", {}).get("v", np.nan)
-else:
-    print("Error fetching data:", response.get("data", "Unknown error"))
+# Add some outliers and trends
+pm25[10:15] = 80  # Simulate a pollution spike
+pm25[100:110] = 10 # Simulate clean air
 
-
-air_quality_df = pd.DataFrame({
-    "timestamp": [timestamp],
-    "PM2.5": [pm25],
-    "Temperature": [temp],
-    "Humidity": [humidity],
-    "Status": "OK"
+# Create DataFrame
+test_data = pd.DataFrame({
+    "timestamp": timestamps,
+    "temperature": temperature,
+    "humidity": humidity,
+    "pm25": pm25
 })
-print(air_quality_df)
+
+# Save to CSV
+test_data.to_csv("test_air_quality.csv", index=False)
+print("Test data generated: test_air_quality.csv")
