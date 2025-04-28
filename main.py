@@ -31,5 +31,4 @@ air_quality_df = pd.DataFrame({
     "Humidity": [humidity],
     "Status": "OK"
 })
-air_quality_df.to_csv("hagen_air_quality.csv", mode="a", header=False, index=False)
 print(air_quality_df)
