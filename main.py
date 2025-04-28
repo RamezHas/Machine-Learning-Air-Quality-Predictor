@@ -23,6 +23,7 @@ if response["status"] == "ok":
 else:
     print("Error fetching data:", response.get("data", "Unknown error"))
 
+
 air_quality_df = pd.DataFrame({
     "timestamp": [timestamp],
     "PM2.5": [pm25],
